@@ -1,5 +1,7 @@
 # ⚡ NetToolbox — 综合网络工具箱
 
+> ### 🔗 在线体验：[https://watermelontip.github.io/net-toolbox](https://watermelontip.github.io/net-toolbox)
+
 一个纯前端、零后端依赖的网络工具箱，提供 8 个常用网络诊断功能。
 
 ## 🚀 功能列表
