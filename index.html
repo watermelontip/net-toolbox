@@ -4,267 +4,255 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NetToolbox - 综合网络工具箱</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='4' y1='4' x2='28' y2='28'%3E%3Cstop offset='0%25' stop-color='%233b82f6'/%3E%3Cstop offset='100%25' stop-color='%2306b6d4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='14' stroke='url(%23g)' stroke-width='2.5' fill='none'/%3E%3Ccircle cx='9' cy='11' r='3' fill='url(%23g)'/%3E%3Ccircle cx='23' cy='11' r='3' fill='url(%23g)'/%3E%3Ccircle cx='16' cy='23' r='3' fill='url(%23g)'/%3E%3Cline x1='11.5' y1='12.5' x2='20.5' y2='12.5' stroke='url(%23g)' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='10.8' y1='13.8' x2='14.5' y2='20.5' stroke='url(%23g)' stroke-width='2' stroke-linecap='round'/%3E%3Cline x1='21.2' y1='13.8' x2='17.5' y2='20.5' stroke='url(%23g)' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='16' r='2' fill='url(%23g)'/%3E%3C/svg%3E">
+  <meta name="description" content="一站式网络诊断工具，支持 IP 信息、延迟、DNS、WebRTC、DNS 泄漏、浏览器指纹和扩展网络工具检测。">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='4' y1='4' x2='28' y2='28'%3E%3Cstop offset='0%25' stop-color='%233b82f6'/%3E%3Cstop offset='100%25' stop-color='%2306b6d4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='14' stroke='url(%23g)' stroke-width='2.5' fill='none'/%3E%3Ccircle cx='9' cy='11' r='3' fill='url(%23g)'/%3E%3Ccircle cx='23' cy='11' r='3' fill='url(%23g)'/%3E%3Ccircle cx='16' cy='23' r='3' fill='url(%23g)'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-
-  <!-- Header -->
-  <header>
-    <div class="container header-inner">
-      <a class="logo" href="#">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+  <header class="header">
+    <div class="container">
+      <a class="logo" href="#home" aria-label="NetToolbox Home">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
           <defs><linearGradient id="logoGrad" x1="2" y1="2" x2="26" y2="26"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs>
           <circle cx="14" cy="14" r="12" stroke="url(#logoGrad)" stroke-width="2" fill="none"/>
           <circle cx="8" cy="10" r="2.5" fill="url(#logoGrad)"/>
           <circle cx="20" cy="10" r="2.5" fill="url(#logoGrad)"/>
           <circle cx="14" cy="20" r="2.5" fill="url(#logoGrad)"/>
-          <line x1="10" y1="11.5" x2="17.5" y2="11.5" stroke="url(#logoGrad)" stroke-width="1.8" stroke-linecap="round"/>
-          <line x1="9.3" y1="12.2" x2="12.8" y2="17.8" stroke="url(#logoGrad)" stroke-width="1.8" stroke-linecap="round"/>
-          <line x1="18.7" y1="12.2" x2="15.2" y2="17.8" stroke="url(#logoGrad)" stroke-width="1.8" stroke-linecap="round"/>
-          <circle cx="14" cy="14" r="1.5" fill="url(#logoGrad)" opacity="0.6">
-            <animate attributeName="r" values="1.5;4;1.5" dur="2s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.6;0;0.6" dur="2s" repeatCount="indefinite"/>
-          </circle>
         </svg>
         <span>NetToolbox</span>
       </a>
-      <button class="btn-hamburger" id="btnHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-      <nav id="mainNav">
-        <a href="#ip" class="nav-link" data-section="ip" data-i18n="nav_ip">IP 信息</a>
-        <a href="#latency" class="nav-link" data-section="latency" data-i18n="nav_latency">延迟测试</a>
-        <a href="#dns" class="nav-link" data-section="dns" data-i18n="nav_dns">DNS 解析</a>
-        <a href="#leak" class="nav-link" data-section="leak" data-i18n="nav_security">安全检测</a>
+
+      <nav class="nav-pills" id="mainNav" aria-label="Primary">
+        <a href="#ip" class="nav-link" data-i18n="nav_ip">IP 信息</a>
+        <a href="#latency" class="nav-link" data-i18n="nav_latency">延迟测试</a>
+        <a href="#dns" class="nav-link" data-i18n="nav_dns">DNS 解析</a>
+        <a href="#leak" class="nav-link" data-i18n="nav_security">安全检测</a>
       </nav>
-      <button class="btn-dark" id="btnDark" aria-label="Dark mode"><i class="fas fa-moon"></i></button>
-      <a class="btn-github" href="https://github.com/watermelontip/net-toolbox" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-      <button class="btn-lang" id="btnLang">EN</button>
-      <button class="btn-run" id="btnRun">
-        <span class="btn-radar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
-        <span data-i18n="btn_run">开始检测</span>
-      </button>
+
+      <div class="header-actions">
+        <button class="hamburger" id="btnHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+        <button class="btn-icon" id="btnDark" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <a class="btn-icon" href="https://github.com/watermelontip/net-toolbox" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <button class="btn-icon btn-lang" id="btnLang">EN</button>
+        <button class="btn-run" id="btnRun">
+          <i class="fas fa-bullseye"></i>
+          <span data-i18n="btn_run">开始检测</span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero" id="home">
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-badge" data-i18n="hero_badge">一站式网络诊断工具</div>
+        <h1 class="hero-title" data-i18n="hero_title">检查你的网络环境</h1>
+        <p class="hero-subtitle" data-i18n="hero_desc">一键检测 IP 地址、网络延迟、DNS 解析、WebRTC 泄漏、浏览器指纹等全方位网络信息。</p>
+        <div class="ip-card">
+          <div class="ip-label" data-i18n="hero_ip_label">你的 IP 地址</div>
+          <div class="ip-value" id="heroIP"><span class="skeleton skeleton-ip">000.000.000.000</span></div>
+          <div class="ip-location" id="heroLocation"><span class="skeleton skeleton-loc">正在获取位置</span></div>
+          <div class="ip-location" id="heroISP"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features container" id="features">
+      <div class="features-grid">
+        <a class="feature-card" href="#ip" data-action="checkIP">
+          <div class="icon feature-icon"><i class="fas fa-globe"></i></div>
+          <h3 data-i18n="feat_ip">IP 信息</h3>
+          <p data-i18n="feat_ip_desc">IP 地址、地理位置、ISP、ASN、时区。</p>
+        </a>
+        <a class="feature-card" href="#ip" data-action="checkEnv">
+          <div class="icon feature-icon"><i class="fas fa-wifi"></i></div>
+          <h3 data-i18n="feat_env">网络环境</h3>
+          <p data-i18n="feat_env_desc">连接类型、下行速度、RTT、省流模式和 IPv6。</p>
+        </a>
+        <a class="feature-card" href="#latency" data-action="runLatency">
+          <div class="icon feature-icon"><i class="fas fa-gauge-high"></i></div>
+          <h3 data-i18n="feat_latency">延迟测试</h3>
+          <p data-i18n="feat_latency_desc">测试 Google、GitHub、ChatGPT 等常用服务可达性。</p>
+        </a>
+        <a class="feature-card" href="#dns" data-action="runDNS">
+          <div class="icon feature-icon"><i class="fas fa-magnifying-glass"></i></div>
+          <h3 data-i18n="feat_dns">DNS 解析</h3>
+          <p data-i18n="feat_dns_desc">通过多个 DoH 解析器解析常用域名并统计耗时。</p>
+        </a>
+        <a class="feature-card" href="#leak" data-action="checkWebRTC">
+          <div class="icon feature-icon"><i class="fas fa-video"></i></div>
+          <h3 data-i18n="feat_webrtc">WebRTC 泄漏</h3>
+          <p data-i18n="feat_webrtc_desc">检测 WebRTC 是否暴露真实公网 IP。</p>
+        </a>
+        <a class="feature-card" href="#leak" data-action="checkDNSLeak">
+          <div class="icon feature-icon"><i class="fas fa-shield-halved"></i></div>
+          <h3 data-i18n="feat_dnsleak">DNS 泄漏</h3>
+          <p data-i18n="feat_dnsleak_desc">检查 DNS 查询和出口信息是否可能泄漏。</p>
+        </a>
+        <a class="feature-card" href="#leak" data-action="checkFingerprint">
+          <div class="icon feature-icon"><i class="fas fa-fingerprint"></i></div>
+          <h3 data-i18n="feat_fp">浏览器指纹</h3>
+          <p data-i18n="feat_fp_desc">收集浏览器、屏幕、WebGL、Canvas 和 Audio 指纹。</p>
+        </a>
+        <a class="feature-card" href="#tools" data-action="Fraud.run">
+          <div class="icon feature-icon"><i class="fas fa-user-secret"></i></div>
+          <h3 data-i18n="feat_fraud">欺诈评分</h3>
+          <p data-i18n="feat_fraud_desc">评估代理、VPN、Tor、云服务等 IP 风险。</p>
+        </a>
+      </div>
+    </section>
+
+    <div class="container progress-wrap" id="progressWrap" style="display:none">
+      <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+    </div>
+
+    <section class="section container card" id="ip">
+      <div class="panel">
+        <div class="panel-header">
+          <h2><i class="fas fa-globe"></i> <span data-i18n="sec_ip">IP 与网络信息</span></h2>
+          <div class="section-actions">
+            <button class="btn btn-sm btn-primary" id="btnIP" data-i18n="btn_ip">刷新 IP</button>
+            <button class="btn btn-sm" id="btnEnv" data-i18n="btn_env">检测环境</button>
+          </div>
+        </div>
+        <div class="panel-body grid grid-2">
+          <div>
+            <h3 data-i18n="feat_ip">IP 信息</h3>
+            <div id="ipResult" class="status-box loading" data-i18n="loading">加载中...</div>
+          </div>
+          <div>
+            <h3 data-i18n="feat_env">网络环境</h3>
+            <div id="envResult" class="status-box loading" data-i18n="loading">加载中...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container card" id="latency">
+      <div class="panel">
+        <div class="panel-header">
+          <h2><i class="fas fa-gauge-high"></i> <span data-i18n="sec_latency">延迟与连通性</span></h2>
+          <span class="badge" id="latencyBadge" data-i18n="badge_pending">等待中</span>
+        </div>
+        <div class="panel-body">
+          <button class="btn btn-sm btn-primary mb-2" id="btnLatency" data-i18n="btn_latency">测试延迟</button>
+          <div id="latencyResult" class="status-box" data-i18n="empty_hint">点击按钮或上方卡片开始测试。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container card" id="dns">
+      <div class="panel">
+        <div class="panel-header">
+          <h2><i class="fas fa-magnifying-glass"></i> <span data-i18n="sec_dns">DNS 解析</span></h2>
+          <span class="badge" id="dnsBadge" data-i18n="badge_pending">等待中</span>
+        </div>
+        <div class="panel-body">
+          <button class="btn btn-sm btn-primary mb-2" id="btnDNS" data-i18n="btn_dns">运行 DNS 解析</button>
+          <div id="dnsResult" class="status-box" data-i18n="empty_hint">点击按钮或上方卡片开始测试。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container card" id="leak">
+      <div class="panel">
+        <div class="panel-header">
+          <h2><i class="fas fa-shield-halved"></i> <span data-i18n="sec_leak">安全与泄漏检测</span></h2>
+          <span class="badge" data-i18n="badge_pending">等待中</span>
+        </div>
+        <div class="panel-body leak-grid">
+          <div class="leak-card">
+            <h4><i class="fas fa-video"></i> <span data-i18n="leak_webrtc">WebRTC 泄漏</span></h4>
+            <button class="btn btn-sm btn-primary mb-2" id="btnWebRTC" data-i18n="btn_webrtc">检测 WebRTC</button>
+            <div id="webrtcResult" class="result-badge result-warn" data-i18n="leak_waiting">等待检测</div>
+          </div>
+          <div class="leak-card">
+            <h4><i class="fas fa-shield-halved"></i> <span data-i18n="leak_dns">DNS 泄漏</span></h4>
+            <button class="btn btn-sm btn-primary mb-2" id="btnDNSLeak" data-i18n="btn_dnsleak">检测 DNS 泄漏</button>
+            <div id="dnsLeakResult" class="result-badge result-warn" data-i18n="leak_waiting">等待检测</div>
+          </div>
+          <div class="leak-card">
+            <h4><i class="fas fa-fingerprint"></i> <span data-i18n="leak_fp">浏览器指纹</span></h4>
+            <button class="btn btn-sm btn-primary mb-2" id="btnFP" data-i18n="btn_fp">生成指纹</button>
+            <div id="fpResult" class="result-badge result-warn" data-i18n="leak_waiting">等待检测</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container card" id="tools">
+      <div class="panel">
+        <div class="panel-header">
+          <h2><i class="fas fa-screwdriver-wrench"></i> <span data-i18n="sec_tools">扩展工具</span></h2>
+        </div>
+        <div class="panel-body tools-grid">
+          <div class="card tool-card">
+            <div class="card-header"><i class="fas fa-user-secret"></i> <span data-i18n="fraud_title">欺诈评分</span></div>
+            <p class="text-muted mb-2" data-i18n="fraud_desc">检测代理、VPN、Tor、数据中心等风险。</p>
+            <button class="btn btn-primary btn-sm" id="btnFraud" data-i18n="btn_run">开始检测</button>
+            <div id="fraudResult" class="mt-2"></div>
+          </div>
+          <div class="card tool-card">
+            <div class="card-header"><i class="fas fa-clipboard"></i> <span data-i18n="whois_title">Whois 域名查询</span></div>
+            <p class="text-muted mb-2" data-i18n="whois_desc">查询域名注册商、过期时间、DNS 服务器等。</p>
+            <div class="input-group">
+              <input id="whoisInput" data-i18n="whois_input_hint" placeholder="输入域名，例如 example.com">
+              <button class="btn btn-primary btn-sm" id="btnWhois" data-i18n="whois_query">查询</button>
+            </div>
+            <div id="whoisResult" class="mt-2"></div>
+          </div>
+          <div class="card tool-card">
+            <div class="card-header"><i class="fas fa-lock"></i> <span data-i18n="headers_title">HTTP 头部 / SSL 证书</span></div>
+            <p class="text-muted mb-2" data-i18n="headers_desc">查看 HTTP 响应头和 SSL 证书透明度日志。</p>
+            <div class="input-group">
+              <input id="headersInput" data-i18n="headers_input_hint" placeholder="输入 URL，例如 https://example.com">
+              <button class="btn btn-primary btn-sm" id="btnHeaders" data-i18n="headers_query">检测</button>
+            </div>
+            <div id="headersResult" class="mt-2">
+              <div id="headersHttp"></div>
+              <div id="headersSSL"></div>
+            </div>
+          </div>
+          <div class="card tool-card">
+            <div class="card-header"><i class="fas fa-bolt"></i> <span data-i18n="speed_title">网站测速</span></div>
+            <p class="text-muted mb-2" data-i18n="speed_desc">从 Cloudflare 下载测试文件估算带宽。</p>
+            <div class="input-group">
+              <select id="speedSize">
+                <option value="1000000">1 MB</option>
+                <option value="5000000" selected>5 MB</option>
+                <option value="10000000">10 MB</option>
+                <option value="25000000">25 MB</option>
+              </select>
+              <button class="btn btn-primary btn-sm" id="btnSpeed" data-i18n="speed_start">开始测速</button>
+            </div>
+            <div id="speedResult" class="mt-2"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container card" id="summary">
+      <div class="panel">
+        <div class="panel-header">
+          <h2><i class="fas fa-clipboard-check"></i> <span data-i18n="sec_summary">检测摘要</span></h2>
+          <button class="btn btn-sm" id="btnCopyReport"><i class="fas fa-copy"></i> <span data-i18n="btn_copy">复制报告</span></button>
+        </div>
+        <div class="panel-body">
+          <div id="summaryResult" class="summary-box">
+            <p class="text-muted" data-i18n="summary_empty">点击“开始检测”运行全面网络诊断。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
     <div class="container">
-      <div class="hero-badge" data-i18n="hero_badge">一站式网络诊断工具</div>
-      <h1 data-i18n="hero_title">检查你的网络环境</h1>
-      <p data-i18n="hero_desc">一键检测 IP 地址、网络延迟、DNS 解析、WebRTC 泄露、浏览器指纹等全方位网络信息</p>
-      <div class="hero-ip-card">
-        <div class="hero-ip-left">
-          <span class="hero-ip-label" data-i18n="hero_ip_label">Your IP Address</span>
-          <span class="hero-ip-value" id="heroIP"><span class="skeleton skeleton-ip"></span></span>
-        </div>
-        <div class="hero-ip-right">
-          <span class="hero-ip-loc" id="heroLoc"><span class="skeleton skeleton-loc"></span></span>
-          <span class="hero-ip-isp" id="heroISP"></span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Feature Cards -->
-  <section class="features container" id="features">
-    <a class="feature-card" href="#ip" data-action="checkIP">
-      <div class="feature-icon"><i class="fas fa-globe"></i></div>
-      <h3 data-i18n="feat_ip">IP 信息</h3>
-      <p data-i18n="feat_ip_desc">IP 地址、地理位置、ISP、ASN、时区</p>
-    </a>
-    <a class="feature-card" href="#ip" data-action="checkEnv">
-      <div class="feature-icon"><i class="fas fa-wifi"></i></div>
-      <h3 data-i18n="feat_env">网络环境</h3>
-      <p data-i18n="feat_env_desc">连接类型、下行速度、RTT、省流模式</p>
-    </a>
-    <a class="feature-card" href="#latency" data-action="runLatency">
-      <div class="feature-icon"><i class="fas fa-tachometer-alt"></i></div>
-      <h3 data-i18n="feat_latency">延迟测试</h3>
-      <p data-i18n="feat_latency_desc">Ping 16 个服务：Google、ChatGPT、GitHub 等</p>
-    </a>
-    <a class="feature-card" href="#dns" data-action="runDNS">
-      <div class="feature-icon"><i class="fas fa-search"></i></div>
-      <h3 data-i18n="feat_dns">DNS 解析</h3>
-      <p data-i18n="feat_dns_desc">通过 DoH 解析域名（阿里/Google），测量速度</p>
-    </a>
-    <a class="feature-card" href="#leak" data-action="runWebRTCCard">
-      <div class="feature-icon"><i class="fas fa-video"></i></div>
-      <h3 data-i18n="feat_webrtc">WebRTC 泄露</h3>
-      <p data-i18n="feat_webrtc_desc">检测 WebRTC 协议导致的真实 IP 泄露</p>
-    </a>
-    <a class="feature-card" href="#leak" data-action="runDNSLeakCard">
-      <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-      <h3 data-i18n="feat_dnsleak">DNS 泄露</h3>
-      <p data-i18n="feat_dnsleak_desc">检查 DNS 查询是否在 VPN 外暴露</p>
-    </a>
-    <a class="feature-card" href="#leak" data-action="runFingerprintCard">
-      <div class="feature-icon"><i class="fas fa-fingerprint"></i></div>
-      <h3 data-i18n="feat_fp">浏览器指纹</h3>
-      <p data-i18n="feat_fp_desc">浏览器与设备指纹分析</p>
-    </a>
-    <a class="feature-card" href="#tools" data-action="Fraud.run">
-      <div class="feature-icon"><i class="fas fa-user-secret"></i></div>
-      <h3>欺诈评分</h3>
-      <p>IP 代理/VPN/Tor 风险评分 (0-100)</p>
-    </a>
-  </section>
-
-  <!-- Progress Bar -->
-  <div class="progress-bar-container container" id="progressBar" style="display:none">
-    <div class="progress-bar-track">
-      <div class="progress-bar-fill" id="progressFill"></div>
-    </div>
-    <span class="progress-text" id="progressText">0%</span>
-  </div>
-
-  <!-- IP Detail Section -->
-  <section class="section container" id="ip">
-    <div class="section-header">
-      <h2><i class="fas fa-globe"></i> <span data-i18n="sec_ip">IP & 网络信息</span></h2>
-      <span class="badge" id="ipBadge" data-i18n="badge_pending">等待中</span>
-    </div>
-    <div class="detail-grid" id="ipGrid">
-      <div class="detail-item"><label data-i18n="label_ip">IP 地址</label><span id="dIP" class="mono skeleton-text">--</span></div>
-      <div class="detail-item"><label data-i18n="label_loc">位置</label><span id="dLoc" class="skeleton-text">--</span></div>
-      <div class="detail-item"><label data-i18n="label_isp">ISP</label><span id="dISP" class="skeleton-text">--</span></div>
-      <div class="detail-item"><label data-i18n="label_asn">ASN</label><span id="dASN" class="mono skeleton-text">--</span></div>
-      <div class="detail-item"><label data-i18n="label_property">IP 属性</label><span id="dProperty" class="skeleton-text">--</span></div>
-      <div class="detail-item"><label data-i18n="label_country">国家</label><span id="dCountry" class="skeleton-text">--</span></div>
-      <div class="detail-item"><label data-i18n="label_webrtc_ip">WebRTC 泄露 IP</label><span id="dWebRTCIP" class="mono skeleton-text">--</span></div>
-      <div class="detail-item"><label data-i18n="label_tz">时区</label><span id="dTZ" class="mono skeleton-text">--</span></div>
-      <div class="detail-item"><label data-i18n="label_conn">连接类型</label><span id="dConn" class="skeleton-text">--</span></div>
-      <div class="detail-item"><label data-i18n="label_down">下行速度</label><span id="dDown" class="skeleton-text">--</span></div>
-      <div class="detail-item"><label data-i18n="label_rtt">RTT</label><span id="dRTT" class="skeleton-text">--</span></div>
-      <div class="detail-item"><label data-i18n="label_ipv6">IPv6</label><span id="dIPv6" class="mono skeleton-text">--</span></div>
-      <div class="detail-item"><label data-i18n="label_saver">省流模式</label><span id="dSaver" class="skeleton-text">--</span></div>
-      <div class="detail-item"><label data-i18n="label_speed">实测速度</label><span id="dSpeed" class="skeleton-text">--</span></div>
-      <div class="detail-item"><label data-i18n="label_online">在线状态</label><span id="dOnline" class="skeleton-text">--</span></div>
-    </div>
-  </section>
-
-  <!-- Latency Section -->
-  <section class="section container" id="latency">
-    <div class="section-header">
-      <h2><i class="fas fa-tachometer-alt"></i> <span data-i18n="sec_latency">延迟 & 连通性</span></h2>
-      <span class="badge" id="latBadge" data-i18n="badge_pending">等待中</span>
-    </div>
-    <div class="latency-table" id="latencyTable">
-      <div class="latency-empty" data-i18n="empty_hint">点击"开始检测"或上方卡片开始测试</div>
-    </div>
-  </section>
-
-  <!-- DNS Section -->
-  <section class="section container" id="dns">
-    <div class="section-header">
-      <h2><i class="fas fa-search"></i> <span data-i18n="sec_dns">DNS 解析</span></h2>
-      <span class="badge" id="dnsBadge" data-i18n="badge_pending">等待中</span>
-    </div>
-    <div class="dns-table" id="dnsTable">
-      <div class="latency-empty" data-i18n="empty_hint">点击"开始检测"或上方卡片开始测试</div>
-    </div>
-  </section>
-
-  <!-- Leak Test Section -->
-  <section class="section container" id="leak">
-    <div class="section-header">
-      <h2><i class="fas fa-shield-alt"></i> <span data-i18n="sec_leak">安全 & 泄露检测</span></h2>
-      <span class="badge" id="leakBadge" data-i18n="badge_pending">等待中</span>
-    </div>
-    <div class="leak-grid" id="leakGrid">
-      <div class="leak-item">
-        <i class="fas fa-video"></i>
-        <h4 data-i18n="leak_webrtc">WebRTC 泄露</h4>
-        <div class="result pending" data-i18n="leak_waiting">等待检测</div>
-      </div>
-      <div class="leak-item">
-        <i class="fas fa-shield-alt"></i>
-        <h4 data-i18n="leak_dns">DNS 泄露</h4>
-        <div class="result pending" data-i18n="leak_waiting">等待检测</div>
-      </div>
-      <div class="leak-item">
-        <i class="fas fa-fingerprint"></i>
-        <h4 data-i18n="leak_fp">浏览器指纹</h4>
-        <div class="result pending" data-i18n="leak_waiting">等待检测</div>
-      </div>
-    </div>
-    <div class="fingerprint-table" id="fpTable"></div>
-  </section>
-
-  <!-- Unique Tools Section -->
-  <section class="section container" id="tools">
-    <div class="section-header">
-      <h2><i class="fas fa-tools"></i> 扩展工具</h2>
-    </div>
-    <div class="tools-grid">
-      <!-- Fraud Score -->
-      <div class="card tool-card">
-        <div class="card-header"><i class="fas fa-user-secret"></i> IP 欺诈 / 代理评分</div>
-        <p style="font-size:.85rem;color:var(--text-secondary);margin-bottom:12px">检测代理/VPN/Tor/数据中心，输出 0-100 风险评分</p>
-        <button class="btn btn-primary btn-sm" id="btnFraud" onclick="Fraud.run()">开始检测</button>
-        <div id="fraudResult" style="margin-top:12px"></div>
-      </div>
-      <!-- Whois -->
-      <div class="card tool-card">
-        <div class="card-header"><i class="fas fa-clipboard"></i> Whois 域名查询</div>
-        <p style="font-size:.85rem;color:var(--text-secondary);margin-bottom:12px">查询域名注册商、过期时间、DNS 服务器等</p>
-        <div class="input-group">
-          <input id="whoisInput" placeholder="输入域名，如 example.com" />
-          <button class="btn btn-primary btn-sm" id="btnWhois" onclick="Whois.run()">查询</button>
-        </div>
-        <div id="whoisResult"></div>
-      </div>
-      <!-- HTTP Headers / SSL -->
-      <div class="card tool-card">
-        <div class="card-header"><i class="fas fa-lock"></i> HTTP 头部 / SSL 证书检测</div>
-        <p style="font-size:.85rem;color:var(--text-secondary);margin-bottom:12px">查看 HTTP 响应头和 SSL 证书透明度日志</p>
-        <div class="input-group">
-          <input id="headersInput" placeholder="输入 URL，如 https://example.com" />
-          <button class="btn btn-primary btn-sm" id="btnHeaders" onclick="Headers.run()">检测</button>
-        </div>
-        <div id="headersResult"></div>
-      </div>
-      <!-- Speed Test -->
-      <div class="card tool-card">
-        <div class="card-header"><i class="fas fa-bolt"></i> 网站测速</div>
-        <p style="font-size:.85rem;color:var(--text-secondary);margin-bottom:12px">从 Cloudflare CDN 下载测试文件测量带宽</p>
-        <div class="input-group">
-          <select id="speedSize" style="width:auto">
-            <option value="1000000">1 MB</option>
-            <option value="5000000" selected>5 MB</option>
-            <option value="10000000">10 MB</option>
-            <option value="25000000">25 MB</option>
-          </select>
-          <button class="btn btn-primary btn-sm" id="btnSpeed" onclick="Speed.run()">开始测速</button>
-        </div>
-        <div id="speedResult"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Summary -->
-  <section class="section container" id="summary">
-    <div class="section-header">
-      <h2><i class="fas fa-clipboard-check"></i> <span data-i18n="sec_summary">检测摘要</span></h2>
-    </div>
-    <div class="summary-box" id="summaryBox">
-      <div class="summary-empty">
-        <i class="fas fa-mouse-pointer"></i>
-        <p data-i18n="summary_empty">点击"开始检测"运行全面网络诊断</p>
-      </div>
-    </div>
-    <div class="summary-actions" id="summaryActions" style="display:none">
-      <button class="btn-copy" id="btnCopyReport" onclick="copyReport()">
-        <i class="fas fa-copy"></i> <span data-i18n="btn_copy">复制报告</span>
-      </button>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <p>NetToolbox — 纯前端网络工具箱 · 数据来自公共 API，仅供参考 · <a href="https://github.com/watermelontip/net-toolbox" target="_blank" style="color:var(--accent)">GitHub</a></p>
+      <p>NetToolbox - 纯前端网络工具箱 · 数据来自公共 API，仅供参考 · <a href="https://github.com/watermelontip/net-toolbox" target="_blank" rel="noopener">GitHub</a></p>
     </div>
   </footer>
 
