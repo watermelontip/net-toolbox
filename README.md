@@ -1,39 +1,48 @@
+<div align="center">
+
+<img src="logo.svg" width="96" alt="NetToolbox Logo">
+
 # ⚡ NetToolbox — 综合网络工具箱
 
 > ### 🔗 在线体验：[https://watermelontip.github.io/net-toolbox](https://watermelontip.github.io/net-toolbox)
 
-一个纯前端、零后端依赖的网络工具箱，提供 8 个常用网络诊断功能。
+一个纯前端、零后端依赖的网络诊断工具箱，提供 14+ 项网络检测功能。
+
+</div>
 
 ## 🚀 功能列表
 
 | # | 功能 | 说明 |
 |---|------|------|
-| 1 | **本机 IP 查询** | 获取公网 IP + 归属地/ISP/ASN 信息 |
-| 2 | **IP 欺诈评分** | 检测代理/VPN/Tor/数据中心，输出 0-100 风险评分 |
-| 3 | **HTTP Ping** | HTTP RTT 延迟测试，支持预设目标和自定义 URL |
-| 4 | **DNS 记录查询** | 查询 A/AAAA/CNAME/MX/TXT/NS/SOA/CAA 记录 |
-| 5 | **Whois 域名查询** | 查询域名注册商、过期时间、DNS 服务器等 |
-| 6 | **HTTP 头部 / SSL 检测** | 查看响应头 + SSL 证书透明度日志 |
-| 7 | **浏览器泄露检测** | WebRTC IP 泄露检测 + 浏览器指纹收集 |
-| 8 | **网站测速** | 从 Cloudflare CDN 下载测速，显示 Mbps |
+| 1 | **IP 信息检测** | 3 个 API 并行查询，自动择优（ipapi.co + ipinfo.io + ip-api.com） |
+| 2 | **网络环境检测** | 连接类型、下行速度、RTT、IPv6、省流模式 |
+| 3 | **延迟测试** | 16 个国内外服务并发 Ping，带进度条和颜色分级 |
+| 4 | **DNS 解析** | 10 域名 × 4 DoH 解析器（阿里DNS/Google/Cloudflare）自动故障转移 |
+| 5 | **WebRTC 泄露** | 严格 IPv4/IPv6 验证 + 私网/公网分类 |
+| 6 | **DNS 泄露** | 通过 Cloudflare Trace 检测 DNS 是否暴露 |
+| 7 | **浏览器指纹** | Canvas 哈希 + WebGL 渲染器 + Audio 音频指纹（16+ 维度） |
+| 8 | **IP 欺诈评分** | 代理/VPN/Tor/数据中心风险评分 (0-100) ⭐ 独有 |
+| 9 | **Whois 查询** | 域名注册商、过期时间、DNS 服务器 ⭐ 独有 |
+| 10 | **HTTP 头部 / SSL** | 响应头 + SSL 证书透明度日志 ⭐ 独有 |
+| 11 | **下载测速** | Cloudflare CDN 实时进度条测速 ⭐ 独有 |
 
 ## 🛠️ 技术栈
 
-- **HTML5 + CSS3 + Vanilla JavaScript**
-- 零框架依赖，零构建工具
-- 单文件 `index.html`，可直接打开使用
-- 响应式暗色主题设计
+- **HTML5 + CSS3 + Vanilla JavaScript** — 零框架，零构建
+- 暗色/浅色主题切换
+- 中英文国际化 (i18n)
+- 响应式设计（PC / 平板 / 手机）
+- 一键全部检测 + 检测摘要报告
 
 ## 📡 使用的公共 API
 
 | 功能 | API | 限制 |
 |------|-----|------|
-| IP 查询 | ipify.org, ipinfo.io, ipapi.co | 免费，有频率限制 |
-| 代理检测 | ipapi.co (security 字段) | 免费 30k/月 |
-| DNS | Google DNS (dns.google) | 免费，无明确限制 |
+| IP 查询 | ipapi.co, ipinfo.io, ip-api.com | 免费，有频率限制 |
+| DNS 解析 | dns.alidns.com, dns.google, cloudflare-dns.com | 免费 |
 | Whois | whoisfree API | 免费，支持有限 TLD |
 | SSL 证书 | crt.sh | 免费 |
-| 测速 | Cloudflare Speed Test | 免费，无明确限制 |
+| 测速 | speed.cloudflare.com | 免费 |
 | WebRTC | Google STUN 服务器 | 免费 |
 
 ## ⚠️ 已知限制
@@ -48,26 +57,11 @@
 
 ### 方式一：GitHub Pages（推荐）
 
-```bash
-# 1. 创建仓库并推送
-cd D:\Coding\net-toolbox
-git init
-git add .
-git commit -m "feat: NetToolbox v1.0"
-git remote add origin https://github.com/<你的用户名>/net-toolbox.git
-git push -u origin main
-
-# 2. 在 GitHub 仓库 Settings → Pages → Source 选 main 分支 → Save
-# 3. 访问 https://<你的用户名>.github.io/net-toolbox/
-```
+直接在仓库 Settings → Pages → Source 选 main 分支即可。
 
 ### 方式二：直接打开
 
-双击 `index.html` 即可在浏览器中使用（部分功能受 file:// 协议限制）。
-
-### 方式三：Cloudflare Pages / Vercel
-
-直接导入 GitHub 仓库，无需任何构建配置。
+双击 `index.html` 即可在浏览器中使用。
 
 ## 📄 License
 

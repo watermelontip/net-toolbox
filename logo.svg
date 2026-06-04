@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#22c55e"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="64" cy="64" r="60" fill="#0f172a" stroke="url(#g1)" stroke-width="2.5"/>
+
+  <!-- Network nodes (3 corners of a triangle) -->
+  <circle cx="40" cy="38" r="10" fill="url(#g1)" opacity="0.9"/>
+  <circle cx="88" cy="38" r="10" fill="url(#g1)" opacity="0.9"/>
+  <circle cx="64" cy="82" r="10" fill="url(#g2)" opacity="0.9"/>
+
+  <!-- Connection lines -->
+  <line x1="47" y1="42" x2="81" y2="42" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+  <line x1="44" y1="46" x2="58" y2="76" stroke="url(#g1)" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+  <line x1="84" y1="46" x2="70" y2="76" stroke="url(#g2)" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Center pulse dot -->
+  <circle cx="64" cy="54" r="5" fill="#fff" opacity="0.9" filter="url(#glow)">
+    <animate attributeName="r" values="4;7;4" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.9;0.4;0.9" dur="2s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Small diagnostic dots on lines -->
+  <circle cx="64" cy="42" r="3" fill="#fff" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;0.3;0.7" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="51" cy="61" r="3" fill="#fff" opacity="0.7">
+    <animate attributeName="opacity" values="0.3;0.7;0.3" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="77" cy="61" r="3" fill="#fff" opacity="0.7">
+    <animate attributeName="opacity" values="0.5;0.9;0.5" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Toolbox wrench icon (small, bottom-right) -->
+  <g transform="translate(82,72) scale(0.6)" opacity="0.85">
+    <path d="M20 4C16 0 10 0 7 3L18 14C21 11 21 6 20 4Z" fill="#f59e0b"/>
+    <rect x="2" y="18" width="20" height="4" rx="2" fill="#f59e0b"/>
+    <rect x="6" y="22" width="12" height="8" rx="2" fill="#f59e0b"/>
+    <rect x="10" y="24" width="4" height="4" rx="1" fill="#0f172a"/>
+  </g>
+</svg>
